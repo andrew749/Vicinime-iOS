@@ -20,8 +20,10 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
         println("Response: \(response)")
         var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
         var err: NSError?
-        var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
-        
+        var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSArray
+        for x in json!{
+            println("\(x)")
+        }
         // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
         if(err != nil) {
             println(err!.localizedDescription)
@@ -33,7 +35,7 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
             // check and make sure that json has a value using optional binding.
             if let parseJSON = json {
                 // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                var success = parseJSON["success"] as? Int
+                var success = parseJSON[0] as? Int
                 println("Succes: \(success)")
             }
             else {

@@ -14,6 +14,7 @@ class NetworkManager{
     func executeUpload(title:String,description:String,loc:[String:Double],img:[String:String]){
         self.post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url: postUrl,delegate: nil)
     }
+    //gonna differentiate b/w getting data and putting data with prescence of delegate
     func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         var session = NSURLSession.sharedSession()
@@ -28,7 +29,7 @@ class NetworkManager{
             println("Response: \(response)")
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSArray
             
             // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
             if(err != nil) {
@@ -41,8 +42,12 @@ class NetworkManager{
                 // check and make sure that json has a value using optional binding.
                 if let parseJSON = json {
                     // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                    var success = parseJSON["success"] as? Int
-                    println("Succes: \(success)")
+                    println("Success")
+                    var temp:[EntryModel]
+                    for x in json!{
+                        temp.append(Entry)
+                    }
+                    delegate?.didUpdate(<#data: [EntryModel]#>)
                 }
                 else {
                     // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
