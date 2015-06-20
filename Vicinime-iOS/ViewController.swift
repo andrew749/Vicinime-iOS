@@ -7,21 +7,22 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate {
+import CoreLocation
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate {
     let dlManager:NetworkManager=NetworkManager()
     var data:[EntryModel]=[EntryModel]()
+    let locationManager=CLLocationManager()
+    var update=true
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
-        loadData()
-//        dlManager.executeUpload("iOS", description: "first image upload", loc: [46,-46], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
+        getLocation()
     }
     //model to do network query
-    func loadData(){
-        dlManager.getNearbyPhotos(["lon":46,"lat":-46], distance: 10,delegate:self)
+    func loadData(lon:Double,lat:Double){
+        dlManager.getNearbyPhotos(["lon":lon,"lat":lat], distance: 10,delegate:self)
     }
     func didUpdate(data:[EntryModel]){
         self.data=data
@@ -43,6 +44,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 400;
+    }
+    func getLocation(){
+        locationManager.delegate=self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var locValue:CLLocationCoordinate2D = manager.location.coordinate
+        
+        if(update){
+            dlManager.executeUpload("iOS", description: "first image upload", loc: [locValue.longitude,locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
+        loadData(locValue.longitude, lat: locValue.latitude)
+            update=false
+        }
     }
 }
 

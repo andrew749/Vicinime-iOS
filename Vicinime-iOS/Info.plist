@@ -30,6 +30,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSLocationWhenInUseDescription</key>
+	<string>Vicinime would like to get you location. psst were not gonna do anything bad.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Vicinime would like to use your location.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
