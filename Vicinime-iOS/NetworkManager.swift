@@ -11,8 +11,8 @@ import Foundation
 class NetworkManager{
     let postUrl="http://192.168.1.10:3000/upload"
     let getUrl="http://192.168.1.10:3000/near"
-    func executeUpload(title:String,description:String,loc:[Double],img:String){
-        self.post(["title":title,"description":description,"loc":["lon":loc[0],"lat":loc[1]] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil)
+    func executeUpload(title:String,description:String,loc:[String:Double],img:String){
+        self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil)
     }
     //gonna differentiate b/w getting data and putting data with prescence of delegate
     func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?) {
@@ -30,7 +30,7 @@ class NetworkManager{
             var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
             var err: NSError?
             if let d=delegate{
-                var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSArray
+                var json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &err) as? NSArray
                 
                 // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
                 if(err != nil) {
@@ -45,7 +45,7 @@ class NetworkManager{
                         // Okay, the parsedJSON is here, let's get the value for 'success' out of it
                         println("Success")
                         var temp:[EntryModel]=[EntryModel]()
-                        for x in json!{
+                        for x in parseJSON{
                             temp.append(EntryModel(title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double)))
                         }
                         d.didUpdate(temp)

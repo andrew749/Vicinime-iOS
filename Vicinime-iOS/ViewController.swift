@@ -22,7 +22,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     //model to do network query
     func loadData(lon:Double,lat:Double){
-        dlManager.getNearbyPhotos(["lon":lon,"lat":lat], distance: 10,delegate:self)
+        dlManager.getNearbyPhotos(["lon":lon,"lat":lat], distance: 1000,delegate:self)
     }
     func didUpdate(data:[EntryModel]){
         self.data=data
@@ -55,7 +55,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var locValue:CLLocationCoordinate2D = manager.location.coordinate
         
         if(update){
-            dlManager.executeUpload("iOS", description: "first image upload", loc: [locValue.longitude,locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
+            dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":locValue.longitude,"lat":locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
         loadData(locValue.longitude, lat: locValue.latitude)
             update=false
         }
