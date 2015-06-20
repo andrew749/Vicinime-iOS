@@ -78,8 +78,14 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
     
     task.resume()
 }
+func getBase64(data:UIImage)->String{
+    let imgData = UIImagePNGRepresentation(data)
+    let string = imgData.base64EncodedStringWithOptions(.allZeros)
+    return string
+}
+
 //
-post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], posturl)
+//post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], posturl)
 //post(["lon":45,"lat":-45,"distance":1000000],getUrl)
 
 XCPSetExecutionShouldContinueIndefinitely()

@@ -11,8 +11,8 @@ import Foundation
 class NetworkManager{
     let postUrl="http://192.168.1.10:3000/upload"
     let getUrl="http://192.168.1.10:3000/near"
-    func executeUpload(title:String,description:String,loc:[String:Double],img:[String:String]){
-        self.post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url: postUrl,delegate: nil)
+    func executeUpload(title:String,description:String,loc:[Double],img:String){
+        self.post(["title":title,"description":description,"loc":["lon":loc[0],"lat":loc[1]] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil)
     }
     //gonna differentiate b/w getting data and putting data with prescence of delegate
     func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?) {

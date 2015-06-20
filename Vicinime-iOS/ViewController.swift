@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate {
     let dlManager:NetworkManager=NetworkManager()
     var data:[EntryModel]=[EntryModel]()
     @IBOutlet weak var tableView: UITableView!
@@ -17,11 +17,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
         loadData()
-        
+//        dlManager.executeUpload("iOS", description: "first image upload", loc: [46,-46], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
     }
     //model to do network query
     func loadData(){
-        dlManager.getNearbyPhotos(["lon":45,"lat":-45], distance: 10,delegate:self)
+        dlManager.getNearbyPhotos(["lon":46,"lat":-46], distance: 10,delegate:self)
     }
     func didUpdate(data:[EntryModel]){
         self.data=data
@@ -38,6 +38,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let cell: CardCell=tableView.dequeueReusableCellWithIdentifier("cardcell") as! CardCell
         cell.descriptionText.text=data[indexPath.row].imageDescription
         cell.titleLabel.text=data[indexPath.row].title
+        cell.imageView?.image=data[indexPath.row].image
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

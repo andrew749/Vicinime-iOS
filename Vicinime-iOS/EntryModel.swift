@@ -32,5 +32,9 @@ class EntryModel:NSObject{
         var d=NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         return UIImage(data: d!)
     }
-    
+    class func getBase64(data:UIImage)->String{
+        let imgData = UIImagePNGRepresentation(data)
+        let string = imgData.base64EncodedStringWithOptions(.allZeros)
+        return string
+    }
 }
