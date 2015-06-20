@@ -8,18 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate {
     let url=NSURL(string: "http://localhost:3000/upload")
+    let dlManager:NetworkManager=NetworkManager()
+    var data:[EntryModel]?
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
+        
     }
     //model to do network query
-    func loadData()->[EntryModel]?{
-        let request=NSURLRequest(URL: url!)
-        return nil
+    func loadData(){
+        dlManager.getNearbyPhotos(["lon":45,"lat":-45], distance: 10,delegate:self)
+    }
+    func didUpdate(data:[EntryModel]){
+        self.data=data
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

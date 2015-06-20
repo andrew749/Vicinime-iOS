@@ -10,10 +10,11 @@ import Foundation
 
 class NetworkManager{
     let postUrl="http://localhost:3000/upload"
+    let getUrl="http://localhost:3000/near"
     func executeUpload(title:String,description:String,loc:[String:Double],img:[String:String]){
-        self.post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url: postUrl)
+        self.post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url: postUrl,delegate: nil)
     }
-    func post(params : Dictionary<String, AnyObject!>, url : String) {
+    func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
@@ -53,7 +54,7 @@ class NetworkManager{
         
         task.resume()
     }
-    
-
-    
+    func getNearbyPhotos(loc:[String:Double],distance:Double,delegate:UpdateDelegate){
+        post(["lon":loc["lon"],"lat":loc["lat"],"distance":distance], url: getUrl,delegate:delegate)
+    }
 }

@@ -3,7 +3,8 @@
 import UIKit
 import XCPlayground
 
-let url="http://localhost:3000/upload"
+let posturl="http://localhost:3000/upload"
+let getUrl="http://localhost:3000/near"
 
 func post(params : Dictionary<String, AnyObject!>, url : String) {
     var request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -45,6 +46,8 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
     
     task.resume()
 }
+//
+//post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url)
+post(["lon":45,"lat":-45,"distance":1000000],getUrl)
 
-post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url)
 XCPSetExecutionShouldContinueIndefinitely()
