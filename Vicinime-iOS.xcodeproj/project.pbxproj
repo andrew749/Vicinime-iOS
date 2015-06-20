@@ -16,6 +16,8 @@
 		B005F5C31B339BA30091DE50 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = B005F5C21B339BA30091DE50 /* Card.xib */; };
 		B005F5C51B339C6E0091DE50 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005F5C41B339C6E0091DE50 /* CardCell.swift */; };
 		B005F5C91B33B25C0091DE50 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B005F5C81B33B25C0091DE50 /* cat.jpg */; };
+		B08189071B35036800AEDA86 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08189061B35036800AEDA86 /* NetworkManager.swift */; };
+		B0B5BBB71B34FA4C00667900 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5BBB61B34FA4C00667900 /* EntryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		B005F5C21B339BA30091DE50 /* Card.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		B005F5C41B339C6E0091DE50 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		B005F5C81B33B25C0091DE50 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
+		B08189061B35036800AEDA86 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B0B5BBB61B34FA4C00667900 /* EntryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +89,10 @@
 			children = (
 				B005F5A21B339B100091DE50 /* AppDelegate.swift */,
 				B005F5A41B339B100091DE50 /* ViewController.swift */,
+				B08189061B35036800AEDA86 /* NetworkManager.swift */,
 				B005F5A61B339B100091DE50 /* Main.storyboard */,
 				B005F5C41B339C6E0091DE50 /* CardCell.swift */,
+				B0B5BBB51B34FA3F00667900 /* Model */,
 				B005F5C21B339BA30091DE50 /* Card.xib */,
 				B005F5C81B33B25C0091DE50 /* cat.jpg */,
 				B005F5A91B339B100091DE50 /* Images.xcassets */,
@@ -119,6 +125,14 @@
 				B005F5B71B339B100091DE50 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0B5BBB51B34FA3F00667900 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B0B5BBB61B34FA4C00667900 /* EntryModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +239,8 @@
 			files = (
 				B005F5A51B339B100091DE50 /* ViewController.swift in Sources */,
 				B005F5A31B339B100091DE50 /* AppDelegate.swift in Sources */,
+				B08189071B35036800AEDA86 /* NetworkManager.swift in Sources */,
+				B0B5BBB71B34FA4C00667900 /* EntryModel.swift in Sources */,
 				B005F5C51B339C6E0091DE50 /* CardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +439,7 @@
 				B005F5BE1B339B100091DE50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B005F5BF1B339B100091DE50 /* Build configuration list for PBXNativeTarget "Vicinime-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +448,7 @@
 				B005F5C11B339B100091DE50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
