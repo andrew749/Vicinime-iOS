@@ -5,6 +5,32 @@ import XCPlayground
 
 let posturl="http://localhost:3000/upload"
 let getUrl="http://localhost:3000/near"
+class EntryModel:NSObject{
+    var title:String?
+    var imageDescription:String?
+    var image:UIImage?
+    var location:(lon:Double,lat:Double)?
+    convenience init(title:String,imageDescription:String,image:UIImage,location:(Double,Double)){
+        self.init()
+        self.title=title
+        self.imageDescription=imageDescription
+        self.image=image
+        self.location=(lon:location.0,lat:location.1)
+    }
+    //for base 64 string image
+    convenience init(title:String,imageDescription:String,image:String,location:(Double,Double)){
+        self.init()
+        self.title=title
+        self.imageDescription=imageDescription
+        self.image=self.imageFromB64(image)
+        self.location=(lon:location.0,lat:location.1)
+    }
+    func imageFromB64(data:String)->UIImage{
+        var d=NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        return UIImage(data: d!)!
+    }
+    
+}
 
 func post(params : Dictionary<String, AnyObject!>, url : String) {
     var request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -21,9 +47,6 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
         var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
         var err: NSError?
         var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSArray
-        for x in json!{
-            println("\(x)")
-        }
         // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
         if(err != nil) {
             println(err!.localizedDescription)
@@ -35,8 +58,15 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
             // check and make sure that json has a value using optional binding.
             if let parseJSON = json {
                 // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                var success = parseJSON[0] as? Int
-                println("Succes: \(success)")
+//                var success = parseJSON[0] as? Int
+//                println("Succes: \(success)")
+                var temp:[EntryModel]
+               let x=json![0]
+                println(x)
+                x["title"]
+                x["description"]
+                (x["img"] as! NSDictionary)["data"]
+               ((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0]
             }
             else {
                 // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
@@ -49,7 +79,7 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
     task.resume()
 }
 //
-//post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url)
-post(["lon":45,"lat":-45,"distance":1000000],getUrl)
+post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], posturl)
+//post(["lon":45,"lat":-45,"distance":1000000],getUrl)
 
 XCPSetExecutionShouldContinueIndefinitely()

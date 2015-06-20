@@ -9,8 +9,8 @@
 import Foundation
 
 class NetworkManager{
-    let postUrl="http://localhost:3000/upload"
-    let getUrl="http://localhost:3000/near"
+    let postUrl="http://192.168.1.10:3000/upload"
+    let getUrl="http://192.168.1.10:3000/near"
     func executeUpload(title:String,description:String,loc:[String:Double],img:[String:String]){
         self.post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], url: postUrl,delegate: nil)
     }
@@ -43,11 +43,11 @@ class NetworkManager{
                 if let parseJSON = json {
                     // Okay, the parsedJSON is here, let's get the value for 'success' out of it
                     println("Success")
-                    var temp:[EntryModel]
+                    var temp:[EntryModel]=[EntryModel]()
                     for x in json!{
-                        temp.append(Entry)
+                        temp.append(EntryModel(title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double)))
                     }
-                    delegate?.didUpdate(<#data: [EntryModel]#>)
+                    delegate?.didUpdate(temp)
                 }
                 else {
                     // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?

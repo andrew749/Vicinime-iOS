@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 class CardCell: UITableViewCell{
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dislikeImage: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var descriptionText: UILabel!
