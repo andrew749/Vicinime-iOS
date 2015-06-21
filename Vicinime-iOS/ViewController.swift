@@ -8,17 +8,20 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate {
     let dlManager:NetworkManager=NetworkManager()
     var data:[EntryModel]=[EntryModel]()
     let locationManager=CLLocationManager()
     var update=true
+    var tempLocation:(lon:Double,lat:Double)=(lon:0,lat:0)
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
         getLocation()
+        var b = UIBarButtonItem(title: "Pic", style: .Plain, target: self, action:"takeImage")
+        self.navigationItem.rightBarButtonItem=b
     }
     //model to do network query
     func loadData(lon:Double,lat:Double){
@@ -56,9 +59,31 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         if(update){
          //   dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":locValue.longitude,"lat":locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
+        tempLocation.lat=locValue.latitude
+        tempLocation.lon=locValue.longitude
         loadData(locValue.longitude, lat: locValue.latitude)
             update=false
         }
+    }
+    func takeImage(){
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+//        imagePicker.mediaTypes = [kUTTypeImage as NSString]
+        imagePicker.allowsEditing = false
+        
+        self.presentViewController(imagePicker, animated: true,
+            completion: nil)
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        // Code here to work with media
+        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        var compressedData:NSData = UIImageJPEGRepresentation(chosenImage,0)
+        var compressedImage:UIImage = UIImage(data: compressedData)!
+        dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":tempLocation.lon,"lat":tempLocation.lat], img: EntryModel.getBase64(compressedImage))
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
