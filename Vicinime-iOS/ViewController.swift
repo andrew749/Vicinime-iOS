@@ -55,7 +55,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var locValue:CLLocationCoordinate2D = manager.location.coordinate
         
         if(update){
-            dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":locValue.longitude,"lat":locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
+         //   dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":locValue.longitude,"lat":locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
         loadData(locValue.longitude, lat: locValue.latitude)
             update=false
         }

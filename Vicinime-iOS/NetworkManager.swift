@@ -48,7 +48,7 @@ class NetworkManager{
                         println("Success")
                         var temp:[EntryModel]=[EntryModel]()
                         for x in parseJSON{
-                            temp.append(EntryModel(id:x["_id"] as! String,title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double)))
+                            temp.append(EntryModel(id:x["_id"] as! String,title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double),favorites:(x["meta"] as!NSDictionary)["votes"] as! Int,upvotes:(x["meta"] as!NSDictionary)["favs"] as! Int))
                         }
                         d.didUpdate(temp)
                     }

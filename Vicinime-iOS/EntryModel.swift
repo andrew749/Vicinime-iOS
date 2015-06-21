@@ -14,22 +14,28 @@ class EntryModel:NSObject{
     var image:UIImage?
     var location:(lon:Double,lat:Double)?
     var id:String?
-    convenience init(id:String,title:String,imageDescription:String,image:UIImage,location:(Double,Double)){
+    var favorites:Int=0
+    var upvotes:Int=0
+    convenience init(id:String,title:String,imageDescription:String,image:UIImage,location:(Double,Double),favorites:Int,upvotes:Int){
         self.init()
         self.id=id
         self.title=title
         self.imageDescription=imageDescription
         self.image=image
         self.location=(lon:location.0,lat:location.1)
+        self.favorites=favorites
+        self.upvotes=upvotes
     }
     //for base 64 string image
-    convenience init(id:String,title:String,imageDescription:String,image:String,location:(Double,Double)){
+    convenience init(id:String,title:String,imageDescription:String,image:String,location:(Double,Double),favorites:Int,upvotes:Int){
         self.init()
         self.id=id
         self.title=title
         self.imageDescription=imageDescription
         self.image=self.imageFromB64(image)
         self.location=(lon:location.0,lat:location.1)
+        self.favorites=favorites
+        self.upvotes=upvotes
     }
     func imageFromB64(data:String)->UIImage?{
         var d=NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
