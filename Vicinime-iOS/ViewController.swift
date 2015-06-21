@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,RefreshDelegate {
     let dlManager:NetworkManager=NetworkManager()
     var data:[EntryModel]=[EntryModel]()
     let locationManager=CLLocationManager()
@@ -26,6 +26,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //model to do network query
     func loadData(lon:Double,lat:Double){
         dlManager.getNearbyPhotos(["lon":lon,"lat":lat], distance: 1000,delegate:self)
+    }
+    func refreshView(){
+        loadData(tempLocation.lon, lat: tempLocation.lat)
     }
     func didUpdate(data:[EntryModel]){
         self.data=data
@@ -46,7 +49,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 400;
+        return 300;
     }
     func getLocation(){
         locationManager.delegate=self
@@ -58,7 +61,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var locValue:CLLocationCoordinate2D = manager.location.coordinate
         
         if(update){
-         //   dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":locValue.longitude,"lat":locValue.latitude], img: EntryModel.getBase64(UIImage(named: "cat.jpg")!))
         tempLocation.lat=locValue.latitude
         tempLocation.lon=locValue.longitude
         loadData(locValue.longitude, lat: locValue.latitude)
@@ -82,7 +84,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         var compressedData:NSData = UIImageJPEGRepresentation(chosenImage,0)
         var compressedImage:UIImage = UIImage(data: compressedData)!
-        dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":tempLocation.lon,"lat":tempLocation.lat], img: EntryModel.getBase64(compressedImage))
+        dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":tempLocation.lon,"lat":tempLocation.lat], img: EntryModel.getBase64(compressedImage),refreshDelegate:self)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

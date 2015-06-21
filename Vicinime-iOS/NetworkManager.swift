@@ -13,11 +13,11 @@ class NetworkManager{
     let getUrl="http://192.168.1.10:3000/near"
     let upvoteEndpoint="http://192.168.1.10/upvote/"
     let favoriteEndpoint="http://192.168.1.10/favorite/"
-    func executeUpload(title:String,description:String,loc:[String:Double],img:String){
-        self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil)
+    func executeUpload(title:String,description:String,loc:[String:Double],img:String,refreshDelegate:RefreshDelegate){
+        self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil,refreshDelegate:refreshDelegate)
     }
     //gonna differentiate b/w getting data and putting data with prescence of delegate
-    func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?) {
+    func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?, refreshDelegate:RefreshDelegate?) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
@@ -51,6 +51,7 @@ class NetworkManager{
                             temp.append(EntryModel(id:x["_id"] as! String,title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double),favorites:(x["meta"] as!NSDictionary)["votes"] as! Int,upvotes:(x["meta"] as!NSDictionary)["favs"] as! Int))
                         }
                         d.didUpdate(temp)
+                        return ;
                     }
                     else {
                         // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
@@ -58,12 +59,15 @@ class NetworkManager{
                         println("Error could not parse JSON: \(jsonStr)")
                     }
                 }
-            }})
+            }else{
+                refreshDelegate?.refreshView()
+            }
+        })
         
         task.resume()
     }
     func getNearbyPhotos(loc:[String:Double],distance:Double,delegate:UpdateDelegate){
-        post(["lon":loc["lon"],"lat":loc["lat"],"distance":distance], url: getUrl,delegate:delegate)
+        post(["lon":loc["lon"],"lat":loc["lat"],"distance":distance], url: getUrl,delegate:delegate,refreshDelegate:nil)
     }
     func upvoteEntry(id:String){
         let url=NSURL(string: "\(upvoteEndpoint)\(id)")
