@@ -13,16 +13,19 @@ class EntryModel:NSObject{
     var imageDescription:String?
     var image:UIImage?
     var location:(lon:Double,lat:Double)?
-    convenience init(title:String,imageDescription:String,image:UIImage,location:(Double,Double)){
+    var id:String?
+    convenience init(id:String,title:String,imageDescription:String,image:UIImage,location:(Double,Double)){
         self.init()
+        self.id=id
         self.title=title
         self.imageDescription=imageDescription
         self.image=image
         self.location=(lon:location.0,lat:location.1)
     }
     //for base 64 string image
-    convenience init(title:String,imageDescription:String,image:String,location:(Double,Double)){
+    convenience init(id:String,title:String,imageDescription:String,image:String,location:(Double,Double)){
         self.init()
+        self.id=id
         self.title=title
         self.imageDescription=imageDescription
         self.image=self.imageFromB64(image)

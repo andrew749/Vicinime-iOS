@@ -11,6 +11,8 @@ import Foundation
 class NetworkManager{
     let postUrl="http://192.168.1.10:3000/upload"
     let getUrl="http://192.168.1.10:3000/near"
+    let upvoteEndpoint="http://192.168.1.10/upvote/"
+    let favoriteEndpoint="http://192.168.1.10/favorite/"
     func executeUpload(title:String,description:String,loc:[String:Double],img:String){
         self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil)
     }
@@ -46,7 +48,7 @@ class NetworkManager{
                         println("Success")
                         var temp:[EntryModel]=[EntryModel]()
                         for x in parseJSON{
-                            temp.append(EntryModel(title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double)))
+                            temp.append(EntryModel(id:x["_id"] as! String,title: x["title"] as! String, imageDescription: x["description"] as! String, image: (x["img"] as! NSDictionary)["data"] as! String, location: (((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0] as! Double,((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[1] as! Double)))
                         }
                         d.didUpdate(temp)
                     }
@@ -62,5 +64,19 @@ class NetworkManager{
     }
     func getNearbyPhotos(loc:[String:Double],distance:Double,delegate:UpdateDelegate){
         post(["lon":loc["lon"],"lat":loc["lat"],"distance":distance], url: getUrl,delegate:delegate)
+    }
+    func upvoteEntry(id:String){
+        let url=NSURL(string: "\(upvoteEndpoint)\(id)")
+        let request=NSURLRequest(URL: url!)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+    }
+    func favoriteEntry(id:String){
+        let url=NSURL(string: "\(favoriteEndpoint)\(id)")
+        let request=NSURLRequest(URL: url!)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
     }
 }

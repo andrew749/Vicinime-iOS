@@ -67,6 +67,7 @@ func post(params : Dictionary<String, AnyObject!>, url : String) {
                 x["description"]
                 (x["img"] as! NSDictionary)["data"]
                ((x["loc"] as! NSDictionary)["coordinates"] as! NSArray)[0]
+                x["_id"]
             }
             else {
                 // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
@@ -86,6 +87,6 @@ func getBase64(data:UIImage)->String{
 
 //
 //post(["title":"pic","description":"hello world","loc":["lon":45,"lat":-45] ,"img":["data":"test","contentType":"media/jpeg"]], posturl)
-//post(["lon":45,"lat":-45,"distance":1000000],getUrl)
+post(["lon":-79.58791891120336,"lat":43.79951570652779,"distance":1000000],getUrl)
 
 XCPSetExecutionShouldContinueIndefinitely()
