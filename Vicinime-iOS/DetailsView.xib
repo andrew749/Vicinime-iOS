@@ -44,13 +44,13 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKg-11-Ttu">
                     <rect key="frame" x="0.0" y="23" width="600" height="44"/>
                     <items>
-                        <barButtonItem title="Cancel" id="gNI-ml-qdR">
+                        <barButtonItem title="Cancel" style="plain" id="gNI-ml-qdR">
                             <connections>
                                 <action selector="cancelClick:" destination="iN0-l3-epB" id="WBt-Yk-uDW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FcZ-Qt-yUe"/>
-                        <barButtonItem title="Done" id="mgR-NM-gsx">
+                        <barButtonItem title="Done" style="done" id="mgR-NM-gsx">
                             <connections>
                                 <action selector="doneClick:" destination="iN0-l3-epB" id="2iJ-Oa-9Fi"/>
                             </connections>
@@ -77,6 +77,7 @@
                 <constraint firstItem="kKg-11-Ttu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iEI-kA-sna"/>
                 <constraint firstItem="qZT-dg-Eaa" firstAttribute="leading" secondItem="8cx-Db-tnV" secondAttribute="leading" id="jkg-GW-i3R"/>
                 <constraint firstItem="kKg-11-Ttu" firstAttribute="centerX" secondItem="Grs-wU-Z62" secondAttribute="centerX" id="m6d-lM-MLr"/>
+                <constraint firstAttribute="trailing" secondItem="kKg-11-Ttu" secondAttribute="trailing" id="nDX-Fs-6Ho"/>
                 <constraint firstItem="8cx-Db-tnV" firstAttribute="trailing" secondItem="Grs-wU-Z62" secondAttribute="trailing" id="u3R-bt-TuE"/>
             </constraints>
             <variation key="default">
