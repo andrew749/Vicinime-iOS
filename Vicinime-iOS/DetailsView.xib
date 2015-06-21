@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailsView" customModule="Vicinime_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter title" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Grs-wU-Z62">
+                    <rect key="frame" x="8" y="96" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTR-tm-FoN">
+                    <rect key="frame" x="8" y="67" width="37" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ZCP-CL-WRY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKg-11-Ttu">
+                    <rect key="frame" x="0.0" y="23" width="600" height="44"/>
+                    <items>
+                        <barButtonItem title="Cancel" id="gNI-ml-qdR"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FcZ-Qt-yUe"/>
+                        <barButtonItem title="Done" id="mgR-NM-gsx">
+                            <connections>
+                                <action selector="doneClick:" destination="iN0-l3-epB" id="2iJ-Oa-9Fi"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                    <color key="barTintColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                </toolbar>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cx-Db-tnV">
+                    <rect key="frame" x="8" y="163" width="584" height="437"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZT-dg-Eaa">
+                    <rect key="frame" x="8" y="134" width="88" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="94A-Hk-Aql"/>
+                        <constraint firstAttribute="width" constant="88" id="vAb-vi-Cks"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Grs-wU-Z62" firstAttribute="leading" secondItem="qZT-dg-Eaa" secondAttribute="leading" id="3c8-dD-mFl"/>
+                <constraint firstItem="kKg-11-Ttu" firstAttribute="bottom" secondItem="ZTR-tm-FoN" secondAttribute="top" id="Ctv-ld-SD1"/>
+                <constraint firstItem="Grs-wU-Z62" firstAttribute="top" secondItem="ZTR-tm-FoN" secondAttribute="bottom" constant="8" symbolic="YES" id="Ef6-ah-GcC"/>
+                <constraint firstAttribute="trailing" secondItem="kKg-11-Ttu" secondAttribute="trailing" id="Efd-FD-Vly"/>
+                <constraint firstAttribute="trailing" secondItem="Grs-wU-Z62" secondAttribute="trailing" constant="8" id="HWP-78-Gqr"/>
+                <constraint firstAttribute="trailing" secondItem="8cx-Db-tnV" secondAttribute="trailing" constant="8" id="LVx-As-2Ef"/>
+                <constraint firstAttribute="bottom" secondItem="8cx-Db-tnV" secondAttribute="bottom" id="Lu5-NV-dZJ"/>
+                <constraint firstItem="qZT-dg-Eaa" firstAttribute="top" secondItem="Grs-wU-Z62" secondAttribute="bottom" constant="8" symbolic="YES" id="Nu5-Mg-Ee0"/>
+                <constraint firstItem="8cx-Db-tnV" firstAttribute="top" secondItem="qZT-dg-Eaa" secondAttribute="bottom" constant="8" symbolic="YES" id="Qe6-K7-JeW"/>
+                <constraint firstItem="kKg-11-Ttu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="RlD-Ns-Hph"/>
+                <constraint firstItem="Grs-wU-Z62" firstAttribute="centerX" secondItem="kKg-11-Ttu" secondAttribute="centerX" id="ThZ-g5-woB"/>
+                <constraint firstItem="kKg-11-Ttu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VCi-5r-n90"/>
+                <constraint firstItem="Grs-wU-Z62" firstAttribute="leading" secondItem="ZTR-tm-FoN" secondAttribute="leading" id="czH-4q-R7O"/>
+                <constraint firstItem="8cx-Db-tnV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ffl-dA-MY7"/>
+                <constraint firstItem="kKg-11-Ttu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iEI-kA-sna"/>
+                <constraint firstItem="qZT-dg-Eaa" firstAttribute="leading" secondItem="8cx-Db-tnV" secondAttribute="leading" id="jkg-GW-i3R"/>
+                <constraint firstItem="kKg-11-Ttu" firstAttribute="centerX" secondItem="Grs-wU-Z62" secondAttribute="centerX" id="m6d-lM-MLr"/>
+                <constraint firstItem="8cx-Db-tnV" firstAttribute="trailing" secondItem="Grs-wU-Z62" secondAttribute="trailing" id="u3R-bt-TuE"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Efd-FD-Vly"/>
+                    <exclude reference="VCi-5r-n90"/>
+                    <exclude reference="ThZ-g5-woB"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="descriptionText" destination="8cx-Db-tnV" id="Yk6-xb-4tz"/>
+                <outlet property="titleText" destination="Grs-wU-Z62" id="1TT-5c-8Wg"/>
+            </connections>
+            <point key="canvasLocation" x="375" y="316"/>
+        </view>
+    </objects>
+</document>

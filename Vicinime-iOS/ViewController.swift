@@ -13,6 +13,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var data:[EntryModel]=[EntryModel]()
     let locationManager=CLLocationManager()
     var update=true
+    var image:UIImage?
+    let imagePicker = UIImagePickerController()
     var tempLocation:(lon:Double,lat:Double)=(lon:0,lat:0)
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -68,7 +70,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     func takeImage(){
-        let imagePicker = UIImagePickerController()
         
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
@@ -84,8 +85,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         var compressedData:NSData = UIImageJPEGRepresentation(chosenImage,0)
         var compressedImage:UIImage = UIImage(data: compressedData)!
-        dlManager.executeUpload("iOS", description: "first image upload", loc: ["lon":tempLocation.lon,"lat":tempLocation.lat], img: EntryModel.getBase64(compressedImage),refreshDelegate:self)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.image=compressedImage
+        imagePicker.dismissViewControllerAnimated(true, completion: {
+            let d=DetailsController()
+            d.image=self.image!
+            d.tempLocation=self.tempLocation
+            d.refreshDelegate=self
+            self.presentViewController(d, animated: true, completion: {
+                d.view!.frame = CGRectMake(0, 0, 310, 500);
+            });
+
+        });
     }
 }
 
