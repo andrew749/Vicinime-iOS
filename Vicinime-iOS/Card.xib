@@ -27,6 +27,9 @@
                         <state key="normal" title="☹">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="dislikeClick:" destination="k6W-ho-S4c" eventType="touchUpInside" id="Hc6-N7-1yO"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-pt-4lm">
                         <rect key="frame" x="1" y="251" width="37" height="30"/>
@@ -36,6 +39,9 @@
                         <state key="normal" title="☺︎">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="likeClick:" destination="k6W-ho-S4c" eventType="touchUpInside" id="hnU-2E-lu9"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-FS-e2l">
                         <rect key="frame" x="1" y="8" width="311" height="20.5"/>

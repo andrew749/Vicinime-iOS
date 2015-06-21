@@ -12,6 +12,7 @@ class NetworkManager{
     let postUrl="http://192.168.1.10:3000/upload"
     let getUrl="http://192.168.1.10:3000/near"
     let upvoteEndpoint="http://192.168.1.10/upvote/"
+    let downvoteEndpoint="http://192.168.1.10/downvote/"
     let favoriteEndpoint="http://192.168.1.10/favorite/"
     func executeUpload(title:String,description:String,loc:[String:Double],img:String,refreshDelegate:RefreshDelegate){
         self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil,refreshDelegate:refreshDelegate)
@@ -73,7 +74,12 @@ class NetworkManager{
         let url=NSURL(string: "\(upvoteEndpoint)\(id)")
         let request=NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+    }
+    func downvoteEntry(id:String){
+        let url=NSURL(string: "\(downvoteEndpoint)\(id)")
+        let request=NSURLRequest(URL: url!)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
         }
     }
     func favoriteEntry(id:String){

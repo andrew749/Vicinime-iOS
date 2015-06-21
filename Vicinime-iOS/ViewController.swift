@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,RefreshDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,RefreshDelegate,CellDelegate {
     let dlManager:NetworkManager=NetworkManager()
     var data:[EntryModel]=[EntryModel]()
     let locationManager=CLLocationManager()
@@ -48,6 +48,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.descriptionText.text=data[indexPath.row].imageDescription
         cell.titleLabel.text=data[indexPath.row].title
         cell.mainImage.image=data[indexPath.row].image
+        cell.cellDelegate=self
+        cell.cid=data[indexPath.row].id
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -95,6 +97,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             });
 
         });
+    }
+    func likeButtonClick(id:String){
+        dlManager.upvoteEntry(id)
+    }
+    func dislikeButtonClick(id:String){
+        dlManager.downvoteEntry(id)
     }
 }
 
