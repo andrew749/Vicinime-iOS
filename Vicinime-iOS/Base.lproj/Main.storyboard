@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vQf-k3-ipX">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iWG-nY-hg0">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="b0X-Yf-mfZ"/>
@@ -27,11 +28,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iWG-nY-hg0" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="7ZE-mT-JQC"/>
-                            <constraint firstItem="iWG-nY-hg0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="h9M-GY-alo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iWG-nY-hg0" secondAttribute="trailing" constant="-16" id="1b6-Gj-6Np"/>
+                            <constraint firstItem="iWG-nY-hg0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="HRU-4F-THk"/>
+                            <constraint firstItem="iWG-nY-hg0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="JY5-N0-Pm7"/>
                             <constraint firstItem="iWG-nY-hg0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="iop-Ab-F5J"/>
-                            <constraint firstAttribute="trailing" secondItem="iWG-nY-hg0" secondAttribute="trailing" id="nor-L8-0g6"/>
+                            <constraint firstItem="iWG-nY-hg0" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="u7a-EY-DEw"/>
+                            <constraint firstItem="iWG-nY-hg0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="un5-JW-DHH"/>
+                            <constraint firstAttribute="trailing" secondItem="iWG-nY-hg0" secondAttribute="trailing" id="y6Z-n0-VDO"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1b6-Gj-6Np"/>
+                                <exclude reference="HRU-4F-THk"/>
+                                <exclude reference="iop-Ab-F5J"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="c6N-bD-CH3"/>
                     <connections>

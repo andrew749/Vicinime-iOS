@@ -20,7 +20,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
         getLocation()
-        var b = UIBarButtonItem(title: "Pic", style: .Plain, target: self, action:"takeImage")
+        var b = UIBarButtonItem(title: "📷", style: .Plain, target: self, action:"takeImage")
         self.navigationItem.rightBarButtonItem=b
     }
     //model to do network query
@@ -45,7 +45,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let cell: CardCell=tableView.dequeueReusableCellWithIdentifier("cardcell") as! CardCell
         cell.descriptionText.text=data[indexPath.row].imageDescription
         cell.titleLabel.text=data[indexPath.row].title
-        cell.imageView?.image=data[indexPath.row].image
+        cell.mainImage.image=data[indexPath.row].image
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
