@@ -22,6 +22,7 @@ class DetailsController:UIViewController,DetailDelegate{
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     override func viewDidLoad() {
+        self.view.frame=CGRect(x: 0, y: 0, width: 300, height: 400)
         detailView=NSBundle.mainBundle().loadNibNamed("DetailsView", owner: self, options: nil)[0] as? DetailsView
         detailView!.detailDelegate=self
         self.view.addSubview(detailView!)

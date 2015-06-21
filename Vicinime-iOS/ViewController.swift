@@ -92,7 +92,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             d.tempLocation=self.tempLocation
             d.refreshDelegate=self
             self.presentViewController(d, animated: true, completion: {
-                d.view!.frame = CGRectMake(0, 0, 310, 500);
             });
 
         });

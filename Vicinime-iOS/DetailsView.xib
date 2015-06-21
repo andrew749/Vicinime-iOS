@@ -28,7 +28,11 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKg-11-Ttu">
                     <rect key="frame" x="0.0" y="23" width="600" height="44"/>
                     <items>
-                        <barButtonItem title="Cancel" id="gNI-ml-qdR"/>
+                        <barButtonItem title="Cancel" id="gNI-ml-qdR">
+                            <connections>
+                                <action selector="cancelClick:" destination="iN0-l3-epB" id="WBt-Yk-uDW"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FcZ-Qt-yUe"/>
                         <barButtonItem title="Done" id="mgR-NM-gsx">
                             <connections>

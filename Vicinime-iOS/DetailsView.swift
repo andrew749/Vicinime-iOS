@@ -16,5 +16,11 @@ class DetailsView: UIView{
             l.detailsFilled(titleText.text, description: descriptionText.text)
         }
     }
+    
+    @IBAction func cancelClick(sender: AnyObject) {
+        if let l=detailDelegate{
+            l.cancel()
+        }
+    }
     @IBOutlet weak var titleText: UITextField!
 }
