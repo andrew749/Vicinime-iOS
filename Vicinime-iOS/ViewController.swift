@@ -34,7 +34,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     func didUpdate(data:[EntryModel]){
         self.data=data
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        });
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
