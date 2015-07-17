@@ -77,7 +77,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-//        imagePicker.mediaTypes = [kUTTypeImage as NSString]
         imagePicker.allowsEditing = false
         
         self.presentViewController(imagePicker, animated: true,

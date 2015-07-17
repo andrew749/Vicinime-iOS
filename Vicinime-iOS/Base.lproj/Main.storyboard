@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vQf-k3-ipX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HYu-sF-PsL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iWG-nY-hg0">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iWG-nY-hg0">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -51,12 +51,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="-327"/>
+            <point key="canvasLocation" x="1929" y="-327"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Posts-->
         <scene sceneID="dhm-E2-wjH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vQf-k3-ipX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Posts" id="pxE-F5-yQp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VA2-dY-97t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -69,7 +70,59 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gn-w7-fbo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1132" y="-344"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kNt-IJ-VX9">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="HYu-sF-PsL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="nVg-kh-8ew">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vQf-k3-ipX" kind="relationship" relationship="viewControllers" id="9Ci-hA-rrb"/>
+                        <segue destination="gF0-Xh-uxK" kind="relationship" relationship="viewControllers" id="DXh-dU-Zcv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3PA-Wj-y8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="320" y="-344"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="NWn-XC-euc">
+            <objects>
+                <viewController id="gF0-Xh-uxK" customClass="MapViewController" customModule="Vicinime_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OHL-nn-GGG"/>
+                        <viewControllerLayoutGuide type="bottom" id="ffX-Lp-KNg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iA1-pS-rWw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iBb-bu-fea">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iBb-bu-fea" firstAttribute="leading" secondItem="iA1-pS-rWw" secondAttribute="leading" id="8dy-ta-HRH"/>
+                            <constraint firstAttribute="trailing" secondItem="iBb-bu-fea" secondAttribute="trailing" id="RrN-G0-GWk"/>
+                            <constraint firstItem="iBb-bu-fea" firstAttribute="bottom" secondItem="ffX-Lp-KNg" secondAttribute="top" id="aVI-SC-bbd"/>
+                            <constraint firstItem="iBb-bu-fea" firstAttribute="top" secondItem="OHL-nn-GGG" secondAttribute="bottom" id="dOb-6q-bIu"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" id="xZP-nN-boD"/>
+                    <connections>
+                        <outlet property="mapView" destination="iBb-bu-fea" id="5D6-Vj-Dbx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p7r-jS-20u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="340"/>
         </scene>
     </scenes>
 </document>
