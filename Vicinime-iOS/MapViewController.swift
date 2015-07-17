@@ -22,4 +22,14 @@ class MapViewController:UIViewController{
             regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    func loadLocations(entryModels:[EntryModel]){
+        for x in entryModels{
+            if let coordinate=x.location{
+                let annotation=MKPointAnnotation()
+                annotation.title="\(x.title)"
+                annotation.coordinate=CLLocationCoordinate2D(latitude: coordinate.lat, longitude:coordinate.lon)
+                mapView.addAnnotation(annotation)
+            }
+        }
+    }
 }
