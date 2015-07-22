@@ -8,11 +8,15 @@
 
 import Foundation
 
-class DataManager{
+class DataManager: UpdateDelegate{
     static var manager=DataManager()
+    let networkManager=NetworkManager()
     var currentPosts=[]
     var lastRefresh=NSDate(timeIntervalSince1970: 0)
-    func updatePosts(location:[AnyObject]!){
-        
+    func updatePosts(location:[String:Double]!, distance:Double){
+        networkManager.getNearbyPhotos(location, distance: distance, delegate: self)
+    }
+    func didUpdate(data:[EntryModel]){
+        currentPosts=data
     }
 }

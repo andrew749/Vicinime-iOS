@@ -25,6 +25,7 @@
 		B09B32A21B374A9600967893 /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09B32A11B374A9600967893 /* CellDelegate.swift */; };
 		B0A0564A1B58ADC000CD2312 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A056491B58ADC000CD2312 /* MapViewController.swift */; };
 		B0A0564C1B58AE8F00CD2312 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A0564B1B58AE8F00CD2312 /* DataManager.swift */; };
+		B0A0564E1B59CDC700CD2312 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A0564D1B59CDC700CD2312 /* Constants.swift */; };
 		B0B5BBB71B34FA4C00667900 /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5BBB61B34FA4C00667900 /* EntryModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		B09B32A11B374A9600967893 /* CellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDelegate.swift; sourceTree = "<group>"; };
 		B0A056491B58ADC000CD2312 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B0A0564B1B58AE8F00CD2312 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B0A0564D1B59CDC700CD2312 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B0B5BBB61B34FA4C00667900 /* EntryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				B0A056491B58ADC000CD2312 /* MapViewController.swift */,
 				B0A0564B1B58AE8F00CD2312 /* DataManager.swift */,
 				B08189061B35036800AEDA86 /* NetworkManager.swift */,
+				B0A0564D1B59CDC700CD2312 /* Constants.swift */,
 				B005F5A61B339B100091DE50 /* Main.storyboard */,
 				B09B32941B36FB4D00967893 /* Delegates */,
 				B09B32981B3726ED00967893 /* DetailsController */,
@@ -296,6 +299,7 @@
 				B09B32A01B37312C00967893 /* DetailDelegate.swift in Sources */,
 				B09B32961B36FB5A00967893 /* RefreshDelegate.swift in Sources */,
 				B005F5C51B339C6E0091DE50 /* CardCell.swift in Sources */,
+				B0A0564E1B59CDC700CD2312 /* Constants.swift in Sources */,
 				B0A0564C1B58AE8F00CD2312 /* DataManager.swift in Sources */,
 				B09B32A21B374A9600967893 /* CellDelegate.swift in Sources */,
 			);

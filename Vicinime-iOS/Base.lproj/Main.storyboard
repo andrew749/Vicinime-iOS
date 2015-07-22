@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Near Me-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Vicinime_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="c6N-bD-CH3"/>
+                    <navigationItem key="navigationItem" title="Near Me" id="c6N-bD-CH3"/>
                     <connections>
                         <outlet property="tableView" destination="iWG-nY-hg0" id="sE4-rG-V9s"/>
                     </connections>
@@ -62,8 +62,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VA2-dY-97t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.73026315789473684" green="0.95065789473684215" blue="0.88157894736842102" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="LHs-Ko-kJw">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="aXM-I9-wgn"/>
                     </connections>
@@ -122,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7r-jS-20u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="340"/>
+            <point key="canvasLocation" x="320" y="440"/>
         </scene>
     </scenes>
 </document>

@@ -22,7 +22,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
         getLocation()
-        var b = UIBarButtonItem(title: "📷", style: .Plain, target: self, action:"takeImage")
+        var b = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "takeImage")
         self.navigationItem.rightBarButtonItem=b
     }
     //model to do network query
@@ -47,7 +47,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: CardCell=tableView.dequeueReusableCellWithIdentifier("cardcell") as! CardCell
-        cell.descriptionText.text=data[indexPath.row].imageDescription
         cell.titleLabel.text=data[indexPath.row].title
         cell.mainImage.image=data[indexPath.row].image
         cell.cellDelegate=self
@@ -55,7 +54,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 300;
+        return 350;
     }
     func getLocation(){
         locationManager.delegate=self

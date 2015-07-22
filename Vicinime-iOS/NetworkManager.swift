@@ -9,13 +9,8 @@
 import Foundation
 
 class NetworkManager{
-    let postUrl="http://192.168.1.10:3000/upload"
-    let getUrl="http://192.168.1.10:3000/near"
-    let upvoteEndpoint="http://192.168.1.10/upvote/"
-    let downvoteEndpoint="http://192.168.1.10/downvote/"
-    let favoriteEndpoint="http://192.168.1.10/favorite/"
     func executeUpload(title:String,description:String,loc:[String:Double],img:String,refreshDelegate:RefreshDelegate){
-        self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: postUrl,delegate: nil,refreshDelegate:refreshDelegate)
+        self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: Constants.postURL(),delegate: nil,refreshDelegate:refreshDelegate)
     }
     //gonna differentiate b/w getting data and putting data with prescence of delegate
     func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?, refreshDelegate:RefreshDelegate?) {
@@ -68,22 +63,22 @@ class NetworkManager{
         task.resume()
     }
     func getNearbyPhotos(loc:[String:Double],distance:Double,delegate:UpdateDelegate){
-        post(["lon":loc["lon"],"lat":loc["lat"],"distance":distance], url: getUrl,delegate:delegate,refreshDelegate:nil)
+        post(["lon":loc["lon"],"lat":loc["lat"],"distance":distance], url: Constants.getURL(),delegate:delegate,refreshDelegate:nil)
     }
     func upvoteEntry(id:String){
-        let url=NSURL(string: "\(upvoteEndpoint)\(id)")
+        let url=NSURL(string: "\(Constants.upvoteEndpoint())\(id)")
         let request=NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
         }
     }
     func downvoteEntry(id:String){
-        let url=NSURL(string: "\(downvoteEndpoint)\(id)")
+        let url=NSURL(string: "\(Constants.downvoteEndpoint())\(id)")
         let request=NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
         }
     }
     func favoriteEntry(id:String){
-        let url=NSURL(string: "\(favoriteEndpoint)\(id)")
+        let url=NSURL(string: "\(Constants.favoriteEndpoint())\(id)")
         let request=NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
             println(NSString(data: data, encoding: NSUTF8StringEncoding))

@@ -15,6 +15,7 @@ class MapViewController:UIViewController{
     override func viewDidLoad() {
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         centerMapOnLocation(initialLocation)
+        
     }
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
@@ -31,5 +32,6 @@ class MapViewController:UIViewController{
                 mapView.addAnnotation(annotation)
             }
         }
+        mapView.reloadInputViews()
     }
 }
