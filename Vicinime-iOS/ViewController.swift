@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateDelegate,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,RefreshDelegate,CellDelegate {
-    let dlManager:NetworkManager=NetworkManager()
-    var data:[EntryModel]=[EntryModel]()
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,RefreshDelegate,CellDelegate {
+    let dlManager:NetworkManager = NetworkManager()
+    let dataManager = DataManager.getInstance()
+    var data:[EntryModel] = [EntryModel]()
     let locationManager=CLLocationManager()
     var update=true
     var image:UIImage?
@@ -21,19 +22,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didUpdate", name: Constants.DATA_UPDATE_NOTIFICATION(), object: nil )
         getLocation()
         var b = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "takeImage")
         self.navigationItem.rightBarButtonItem=b
     }
     //model to do network query
     func loadData(lon:Double,lat:Double){
-        dlManager.getNearbyPhotos(["lon":lon,"lat":lat], distance: 1000,delegate:self)
+            dataManager.updatePosts(["lon":lon,"lat":lat], distance: 1000)
     }
     func refreshView(){
         loadData(tempLocation.lon, lat: tempLocation.lat)
     }
-    func didUpdate(data:[EntryModel]){
-        self.data=data
+    func didUpdate(){
+        self.data=dataManager.currentPosts
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
         });

@@ -27,4 +27,7 @@ class Constants{
     class func favoriteEndpoint()->String{
         return "\(baseURL())favorite/"
     }
+    class func DATA_UPDATE_NOTIFICATION()->String{
+        return "DATA_DID_UPDATE"
+    }
 }

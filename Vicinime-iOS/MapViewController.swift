@@ -13,9 +13,11 @@ import MapKit
 class MapViewController:UIViewController{
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
-        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+        let initialLocation = CLLocation(latitude: 43.282778, longitude: -79.829444)
         centerMapOnLocation(initialLocation)
-        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+            self.loadLocations(DataManager.getInstance().currentPosts)
+        })
     }
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
@@ -32,6 +34,8 @@ class MapViewController:UIViewController{
                 mapView.addAnnotation(annotation)
             }
         }
-        mapView.reloadInputViews()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.mapView.reloadInputViews()
+        })
     }
 }
