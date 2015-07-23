@@ -12,14 +12,17 @@ class DataManager: UpdateDelegate{
     static let dataManager=DataManager()
     var currentPosts:[EntryModel]=[]
     var lastRefresh=NSDate(timeIntervalSince1970: 0)
-   
+    static var currentlyUpdating = false
     class func getInstance()->DataManager{
         return DataManager.dataManager
     }
     
     //Custom method if current location isn't the desired location
     func updatePosts(location:[String:Double]!, distance:Double){
-        NetworkManager.getInstance().getNearbyPhotos(location, distance: distance, delegate: self)
+        if !DataManager.currentlyUpdating{
+            NetworkManager.getInstance().getNearbyPhotos(location, distance: distance, delegate: self)
+            DataManager.currentlyUpdating = true
+        }
     }
     
     func updatePosts(){
@@ -27,6 +30,7 @@ class DataManager: UpdateDelegate{
     }
     
     func didUpdate(data:[EntryModel]){
+        DataManager.currentlyUpdating = false
         self.lastRefresh = NSDate()
         currentPosts=data
         NSNotificationCenter.defaultCenter().postNotificationName(Constants.DATA_UPDATE_NOTIFICATION(), object: nil)

@@ -42,7 +42,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
 
     func loadData(){
-        refreshControl.endRefreshing()
         if LocationManager.hasLocation{
             DataManager.getInstance().updatePosts()
         }
@@ -53,6 +52,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func didUpdate(){
+        refreshControl.endRefreshing()
         self.data=DataManager.getInstance().currentPosts
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
