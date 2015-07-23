@@ -36,7 +36,7 @@ class MapViewController:UIViewController, UIImagePickerControllerDelegate, UINav
     func locationUpdate(){
         if let l = lastLocation{
             let currentLocation=locationFromCoordinates(LocationManager.getInstance().getLastLocation().lon,lat:LocationManager.getInstance().getLastLocation().lat)
-            if (currentLocation.distanceFromLocation(l)<20){
+            if (currentLocation.distanceFromLocation(l)>20){
                 centerMapOnLocation(currentLocation)
                 lastLocation = currentLocation
             }
