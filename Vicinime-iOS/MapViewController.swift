@@ -42,7 +42,7 @@ class MapViewController:UIViewController, UIImagePickerControllerDelegate, UINav
             }
         }else{
             lastLocation = locationFromCoordinates(LocationManager.getInstance().getLastLocation().lon,lat:LocationManager.getInstance().getLastLocation().lat)
-            centerMapOnLocation(lastLocation)
+            centerMapOnLocation(lastLocation!)
         }
     }
     
