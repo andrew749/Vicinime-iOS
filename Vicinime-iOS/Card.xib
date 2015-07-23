@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XaU-1X-7Yc">
-                        <rect key="frame" x="0.0" y="0.0" width="333" height="299"/>
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="356"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="318" id="gjS-nM-tDB"/>
                             <constraint firstAttribute="height" constant="254" id="xYP-GL-DX3"/>
@@ -42,7 +42,7 @@
                             <action selector="likeClick:" destination="k6W-ho-S4c" eventType="touchUpInside" id="hnU-2E-lu9"/>
                         </connections>
                     </button>
-                    <view opaque="NO" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-Ka-WQV">
+                    <view opaque="NO" alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-Ka-WQV">
                         <rect key="frame" x="0.0" y="0.0" width="333" height="46"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -77,25 +77,35 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="NsM-FS-e2l" firstAttribute="height" secondItem="9JV-Ka-WQV" secondAttribute="height" id="01t-kK-ArM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="laB-bY-Aaz" secondAttribute="trailing" constant="-7" id="1Du-SB-6F6"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="XaU-1X-7Yc" secondAttribute="bottom" constant="-8.5" id="1u5-0U-VZM"/>
                     <constraint firstItem="OAc-pt-4lm" firstAttribute="baseline" secondItem="laB-bY-Aaz" secondAttribute="firstBaseline" id="4RT-nr-AEX"/>
                     <constraint firstItem="OAc-pt-4lm" firstAttribute="baseline" secondItem="laB-bY-Aaz" secondAttribute="baseline" id="Akh-rc-eqD"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="top" secondItem="9JV-Ka-WQV" secondAttribute="top" id="Aqp-d6-24M"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="top" secondItem="LYG-je-jTj" secondAttribute="top" id="EHL-Dc-5RR"/>
                     <constraint firstItem="laB-bY-Aaz" firstAttribute="top" secondItem="OAc-pt-4lm" secondAttribute="top" id="EX0-Rr-DjN"/>
-                    <constraint firstItem="NsM-FS-e2l" firstAttribute="top" secondItem="XaU-1X-7Yc" secondAttribute="top" id="Gey-Ck-Z5z"/>
-                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="top" secondItem="LYG-je-jTj" secondAttribute="top" id="MhC-KA-MV3"/>
+                    <constraint firstItem="NsM-FS-e2l" firstAttribute="top" secondItem="LYG-je-jTj" secondAttribute="topMargin" constant="-8" id="H4Z-tP-S1g"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="trailing" secondItem="9JV-Ka-WQV" secondAttribute="trailing" id="J5x-ny-yNW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="XaU-1X-7Yc" secondAttribute="trailing" constant="-7" id="NdC-nw-eY0"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="NsM-FS-e2l" secondAttribute="leading" id="V3Q-JJ-6FV"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="top" secondItem="NsM-FS-e2l" secondAttribute="top" id="cDp-je-3lh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NsM-FS-e2l" secondAttribute="trailing" constant="-8" id="dZX-RY-DVy"/>
                     <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leadingMargin" constant="-7" id="fQW-dl-k6w"/>
-                    <constraint firstItem="NsM-FS-e2l" firstAttribute="leading" secondItem="XaU-1X-7Yc" secondAttribute="leading" id="mPe-S8-H9k"/>
-                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leading" id="sZd-ts-Z3w"/>
-                    <constraint firstItem="NsM-FS-e2l" firstAttribute="trailing" secondItem="XaU-1X-7Yc" secondAttribute="trailing" id="ssb-cd-wiX"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="trailing" secondItem="NsM-FS-e2l" secondAttribute="trailing" id="lAG-Mj-rlV"/>
+                    <constraint firstItem="NsM-FS-e2l" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leadingMargin" constant="-8" id="nz5-k8-LLG"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leading" id="sin-to-XvK"/>
+                    <constraint firstAttribute="trailing" secondItem="XaU-1X-7Yc" secondAttribute="trailing" id="xHr-XR-s0r"/>
                     <constraint firstAttribute="bottomMargin" secondItem="OAc-pt-4lm" secondAttribute="bottom" constant="-0.5" id="xei-7L-VhA"/>
-                    <constraint firstItem="laB-bY-Aaz" firstAttribute="top" secondItem="XaU-1X-7Yc" secondAttribute="bottom" constant="19" id="xtk-FC-zTx"/>
-                    <constraint firstAttribute="trailing" secondItem="XaU-1X-7Yc" secondAttribute="trailing" id="yX0-CH-TiT"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="9JV-Ka-WQV" secondAttribute="leading" id="zKq-f9-WHo"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="NdC-nw-eY0"/>
+                        <exclude reference="V3Q-JJ-6FV"/>
+                        <exclude reference="cDp-je-3lh"/>
                         <exclude reference="fQW-dl-k6w"/>
+                        <exclude reference="lAG-Mj-rlV"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
