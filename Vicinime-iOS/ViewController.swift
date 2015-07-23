@@ -8,42 +8,58 @@
 
 import UIKit
 import CoreLocation
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate,RefreshDelegate,CellDelegate {
-    let dlManager:NetworkManager = NetworkManager()
-    let dataManager = DataManager.getInstance()
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,CLLocationManagerDelegate,UINavigationControllerDelegate, CellDelegate {
+    
     var data:[EntryModel] = [EntryModel]()
-    let locationManager=CLLocationManager()
-    var update=true
     var image:UIImage?
     let imagePicker = UIImagePickerController()
-    var tempLocation:(lon:Double,lat:Double)=(lon:0,lat:0)
+    
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //register the nib for each card on the tableView
         tableView.registerNib(UINib(nibName: "Card", bundle: nil), forCellReuseIdentifier: "cardcell")
+        tableView.addSubview(self.refreshControl)
+        
+        //add the pull to refresh indicator on the tableview
+        refreshControl.addTarget(self, action: "loadData", forControlEvents: UIControlEvents.ValueChanged)
+       
+        //register notficiations for statechange
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didUpdate", name: Constants.DATA_UPDATE_NOTIFICATION(), object: nil )
-        getLocation()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "locationUpdate", name: Constants.LOCATION_UPDATE(), object: nil)
+        
+        //simple ui element to show the camera
         var b = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Camera, target: self, action: "takeImage")
         self.navigationItem.rightBarButtonItem=b
+        
+        //start updating location and ask for dialog if it hasnt happened already
+        LocationManager.getInstance().startLocationServices()
+        
     }
-    //model to do network query
-    func loadData(lon:Double,lat:Double){
-            dataManager.updatePosts(["lon":lon,"lat":lat], distance: 1000)
+
+    func loadData(){
+        refreshControl.endRefreshing()
+        if LocationManager.hasLocation{
+            DataManager.getInstance().updatePosts()
+        }
     }
-    func refreshView(){
-        loadData(tempLocation.lon, lat: tempLocation.lat)
+    
+    func locationUpdate(){
+
     }
+    
     func didUpdate(){
-        self.data=dataManager.currentPosts
+        self.data=DataManager.getInstance().currentPosts
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
         });
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    //MARK: TableView Delegate and Data source methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.data.count
     }
@@ -55,25 +71,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.cid=data[indexPath.row].id
         return cell
     }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 350;
     }
-    func getLocation(){
-        locationManager.delegate=self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var locValue:CLLocationCoordinate2D = manager.location.coordinate
-        
-        if(update){
-        tempLocation.lat=locValue.latitude
-        tempLocation.lon=locValue.longitude
-        loadData(locValue.longitude, lat: locValue.latitude)
-            update=false
-        }
-    }
+    
+    //MARK: Method to launch the camera
     func takeImage(){
         
         imagePicker.delegate = self
@@ -83,6 +86,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.presentViewController(imagePicker, animated: true,
             completion: nil)
     }
+    
+    //MARK: Handle the image received from the camera
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         // Code here to work with media
@@ -93,18 +98,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         imagePicker.dismissViewControllerAnimated(true, completion: {
             let d=DetailsController()
             d.image=self.image!
-            d.tempLocation=self.tempLocation
-            d.refreshDelegate=self
+            d.tempLocation=LocationManager.getInstance().getLastLocation()
             self.presentViewController(d, animated: true, completion: {
             });
 
         });
     }
+    
+    //MARK: Helper methods to upvote entries in the list
     func likeButtonClick(id:String){
-        dlManager.upvoteEntry(id)
+        NetworkManager.getInstance().upvoteEntry(id)
     }
     func dislikeButtonClick(id:String){
-        dlManager.downvoteEntry(id)
+        NetworkManager.getInstance().downvoteEntry(id)
     }
 }
 

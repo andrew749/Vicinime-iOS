@@ -30,4 +30,7 @@ class Constants{
     class func DATA_UPDATE_NOTIFICATION()->String{
         return "DATA_DID_UPDATE"
     }
+    class func LOCATION_UPDATE()->String{
+        return "LOCATION_DID_UPDATE"
+    }
 }

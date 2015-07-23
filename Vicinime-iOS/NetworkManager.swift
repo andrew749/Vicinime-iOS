@@ -9,9 +9,17 @@
 import Foundation
 
 class NetworkManager{
-    func executeUpload(title:String,description:String,loc:[String:Double],img:String,refreshDelegate:RefreshDelegate){
+    static var networkManager:NetworkManager = NetworkManager()
+    
+    
+    class func getInstance()->NetworkManager{
+       return networkManager
+    }
+    
+    func executeUpload(title:String,description:String,loc:[String:Double],img:String,refreshDelegate:RefreshDelegate?){
         self.post(["title":title,"description":description,"loc":["lon":loc["lon"]!,"lat":loc["lat"]!] ,"img":["data":img,"contentType":"media/jpeg"]], url: Constants.postURL(),delegate: nil,refreshDelegate:refreshDelegate)
     }
+
     //gonna differentiate b/w getting data and putting data with prescence of delegate
     func post(params : Dictionary<String, AnyObject!>, url : String, delegate:UpdateDelegate?, refreshDelegate:RefreshDelegate?) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)

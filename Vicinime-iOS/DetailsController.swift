@@ -11,10 +11,9 @@ import UIKit
 class DetailsController:UIViewController,DetailDelegate{
     var image:UIImage?
     var tempLocation:(lon:Double,lat:Double)?
-    var refreshDelegate:RefreshDelegate?
     let dlManager:NetworkManager=NetworkManager()
     func detailsFilled(title:String,description:String){
-        dlManager.executeUpload(title, description: description, loc: ["lon":tempLocation!.lon,"lat":tempLocation!.lat], img: EntryModel.getBase64(image!),refreshDelegate:refreshDelegate!)
+        dlManager.executeUpload(title, description: description, loc: ["lon":tempLocation!.lon,"lat":tempLocation!.lat], img: EntryModel.getBase64(image!), refreshDelegate:nil)
         cancel()
     }
     func cancel(){

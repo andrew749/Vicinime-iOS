@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XaU-1X-7Yc">
-                        <rect key="frame" x="0.0" y="37" width="333" height="262"/>
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="299"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="318" id="gjS-nM-tDB"/>
                             <constraint firstAttribute="height" constant="254" id="xYP-GL-DX3"/>
@@ -28,7 +28,7 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-pt-4lm">
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-pt-4lm">
                         <rect key="frame" x="8" y="318" width="26" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="26" id="35j-Ud-vti"/>
@@ -42,14 +42,24 @@
                             <action selector="likeClick:" destination="k6W-ho-S4c" eventType="touchUpInside" id="hnU-2E-lu9"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-FS-e2l">
-                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                    <view opaque="NO" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-Ka-WQV">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="46"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-FS-e2l">
+                        <rect key="frame" x="0.0" y="0.0" width="333" height="46"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="wMf-zx-Qit"/>
+                            <constraint firstAttribute="height" constant="46" id="4F3-Gk-hdh"/>
+                            <constraint firstAttribute="width" constant="333" id="iMp-Vq-DRX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iMp-Vq-DRX"/>
+                            </mask>
+                        </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laB-bY-Aaz">
                         <rect key="frame" x="299" y="318" width="26" height="30"/>
@@ -70,18 +80,17 @@
                     <constraint firstAttribute="trailingMargin" secondItem="laB-bY-Aaz" secondAttribute="trailing" constant="-7" id="1Du-SB-6F6"/>
                     <constraint firstItem="OAc-pt-4lm" firstAttribute="baseline" secondItem="laB-bY-Aaz" secondAttribute="firstBaseline" id="4RT-nr-AEX"/>
                     <constraint firstItem="OAc-pt-4lm" firstAttribute="baseline" secondItem="laB-bY-Aaz" secondAttribute="baseline" id="Akh-rc-eqD"/>
-                    <constraint firstItem="NsM-FS-e2l" firstAttribute="top" secondItem="LYG-je-jTj" secondAttribute="topMargin" id="EC4-Xh-6Sc"/>
                     <constraint firstItem="laB-bY-Aaz" firstAttribute="top" secondItem="OAc-pt-4lm" secondAttribute="top" id="EX0-Rr-DjN"/>
-                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="top" secondItem="NsM-FS-e2l" secondAttribute="bottom" constant="8" symbolic="YES" id="Jw1-o9-7ea"/>
+                    <constraint firstItem="NsM-FS-e2l" firstAttribute="top" secondItem="XaU-1X-7Yc" secondAttribute="top" id="Gey-Ck-Z5z"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="top" secondItem="LYG-je-jTj" secondAttribute="top" id="MhC-KA-MV3"/>
                     <constraint firstAttribute="trailingMargin" secondItem="XaU-1X-7Yc" secondAttribute="trailing" constant="-7" id="NdC-nw-eY0"/>
-                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leading" id="cOZ-oZ-YGb"/>
-                    <constraint firstItem="NsM-FS-e2l" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leadingMargin" constant="-7" id="ecO-Op-iY5"/>
                     <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leadingMargin" constant="-7" id="fQW-dl-k6w"/>
-                    <constraint firstItem="OAc-pt-4lm" firstAttribute="leading" secondItem="NsM-FS-e2l" secondAttribute="leading" id="mO0-5L-10u"/>
-                    <constraint firstAttribute="trailing" secondItem="XaU-1X-7Yc" secondAttribute="trailing" id="qAk-rL-8hk"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="NsM-FS-e2l" secondAttribute="trailing" constant="6" id="qNj-yd-yH0"/>
+                    <constraint firstItem="NsM-FS-e2l" firstAttribute="leading" secondItem="XaU-1X-7Yc" secondAttribute="leading" id="mPe-S8-H9k"/>
+                    <constraint firstItem="XaU-1X-7Yc" firstAttribute="leading" secondItem="LYG-je-jTj" secondAttribute="leading" id="sZd-ts-Z3w"/>
+                    <constraint firstItem="NsM-FS-e2l" firstAttribute="trailing" secondItem="XaU-1X-7Yc" secondAttribute="trailing" id="ssb-cd-wiX"/>
                     <constraint firstAttribute="bottomMargin" secondItem="OAc-pt-4lm" secondAttribute="bottom" constant="-0.5" id="xei-7L-VhA"/>
-                    <constraint firstItem="OAc-pt-4lm" firstAttribute="top" secondItem="XaU-1X-7Yc" secondAttribute="bottom" constant="19" id="xg3-O7-IzY"/>
+                    <constraint firstItem="laB-bY-Aaz" firstAttribute="top" secondItem="XaU-1X-7Yc" secondAttribute="bottom" constant="19" id="xtk-FC-zTx"/>
+                    <constraint firstAttribute="trailing" secondItem="XaU-1X-7Yc" secondAttribute="trailing" id="yX0-CH-TiT"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

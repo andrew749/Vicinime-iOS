@@ -15,6 +15,7 @@
 		B005F5B91B339B100091DE50 /* Vicinime_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005F5B81B339B100091DE50 /* Vicinime_iOSTests.swift */; };
 		B005F5C31B339BA30091DE50 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = B005F5C21B339BA30091DE50 /* Card.xib */; };
 		B005F5C51B339C6E0091DE50 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005F5C41B339C6E0091DE50 /* CardCell.swift */; };
+		B03FC7191B60587D0011D918 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03FC7181B60587D0011D918 /* LocationManager.swift */; };
 		B08189071B35036800AEDA86 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08189061B35036800AEDA86 /* NetworkManager.swift */; };
 		B08189091B350C3800AEDA86 /* UpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08189081B350C3800AEDA86 /* UpdateDelegate.swift */; };
 		B09B32961B36FB5A00967893 /* RefreshDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09B32951B36FB5A00967893 /* RefreshDelegate.swift */; };
@@ -52,6 +53,7 @@
 		B005F5B81B339B100091DE50 /* Vicinime_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vicinime_iOSTests.swift; sourceTree = "<group>"; };
 		B005F5C21B339BA30091DE50 /* Card.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		B005F5C41B339C6E0091DE50 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		B03FC7181B60587D0011D918 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B08189061B35036800AEDA86 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B08189081B350C3800AEDA86 /* UpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDelegate.swift; sourceTree = "<group>"; };
 		B09B32951B36FB5A00967893 /* RefreshDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshDelegate.swift; sourceTree = "<group>"; };
@@ -106,15 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				B005F5A21B339B100091DE50 /* AppDelegate.swift */,
-				B005F5A41B339B100091DE50 /* ViewController.swift */,
-				B0A056491B58ADC000CD2312 /* MapViewController.swift */,
-				B0A0564B1B58AE8F00CD2312 /* DataManager.swift */,
-				B08189061B35036800AEDA86 /* NetworkManager.swift */,
 				B0A0564D1B59CDC700CD2312 /* Constants.swift */,
-				B005F5A61B339B100091DE50 /* Main.storyboard */,
+				B03FC71B1B60631E0011D918 /* Views */,
+				B03FC71A1B6063010011D918 /* Controllers */,
 				B09B32941B36FB4D00967893 /* Delegates */,
-				B09B32981B3726ED00967893 /* DetailsController */,
-				B09B32971B3726DB00967893 /* CustomCell */,
 				B0B5BBB51B34FA3F00667900 /* Model */,
 				B005F5A91B339B100091DE50 /* Images.xcassets */,
 				B005F5AB1B339B100091DE50 /* LaunchScreen.xib */,
@@ -148,9 +145,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B03FC71A1B6063010011D918 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B09B32991B37270100967893 /* DetailsController.swift */,
+				B005F5A41B339B100091DE50 /* ViewController.swift */,
+				B0A056491B58ADC000CD2312 /* MapViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B03FC71B1B60631E0011D918 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B09B32971B3726DB00967893 /* CustomCell */,
+				B005F5A61B339B100091DE50 /* Main.storyboard */,
+				B09B329B1B37282700967893 /* DetailsView.xib */,
+				B09B329D1B37294400967893 /* DetailsView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		B09B32941B36FB4D00967893 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				B09B329F1B37312C00967893 /* DetailDelegate.swift */,
 				B08189081B350C3800AEDA86 /* UpdateDelegate.swift */,
 				B09B32A11B374A9600967893 /* CellDelegate.swift */,
 				B09B32951B36FB5A00967893 /* RefreshDelegate.swift */,
@@ -167,20 +186,12 @@
 			name = CustomCell;
 			sourceTree = "<group>";
 		};
-		B09B32981B3726ED00967893 /* DetailsController */ = {
-			isa = PBXGroup;
-			children = (
-				B09B32991B37270100967893 /* DetailsController.swift */,
-				B09B329D1B37294400967893 /* DetailsView.swift */,
-				B09B329B1B37282700967893 /* DetailsView.xib */,
-				B09B329F1B37312C00967893 /* DetailDelegate.swift */,
-			);
-			name = DetailsController;
-			sourceTree = "<group>";
-		};
 		B0B5BBB51B34FA3F00667900 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B0A0564B1B58AE8F00CD2312 /* DataManager.swift */,
+				B03FC7181B60587D0011D918 /* LocationManager.swift */,
+				B08189061B35036800AEDA86 /* NetworkManager.swift */,
 				B0B5BBB61B34FA4C00667900 /* EntryModel.swift */,
 			);
 			name = Model;
@@ -290,6 +301,7 @@
 			files = (
 				B005F5A51B339B100091DE50 /* ViewController.swift in Sources */,
 				B005F5A31B339B100091DE50 /* AppDelegate.swift in Sources */,
+				B03FC7191B60587D0011D918 /* LocationManager.swift in Sources */,
 				B09B329E1B37294400967893 /* DetailsView.swift in Sources */,
 				B08189071B35036800AEDA86 /* NetworkManager.swift in Sources */,
 				B08189091B350C3800AEDA86 /* UpdateDelegate.swift in Sources */,

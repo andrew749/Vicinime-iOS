@@ -16,6 +16,7 @@ class EntryModel:NSObject{
     var id:String?
     var favorites:Int=0
     var upvotes:Int=0
+    
     convenience init(id:String,title:String,imageDescription:String,image:UIImage,location:(Double,Double),favorites:Int,upvotes:Int){
         self.init()
         self.id=id
@@ -26,6 +27,7 @@ class EntryModel:NSObject{
         self.favorites=favorites
         self.upvotes=upvotes
     }
+    
     //for base 64 string image
     convenience init(id:String,title:String,imageDescription:String,image:String,location:(Double,Double),favorites:Int,upvotes:Int){
         self.init()
@@ -37,10 +39,12 @@ class EntryModel:NSObject{
         self.favorites=favorites
         self.upvotes=upvotes
     }
+    //MARK: Base64 Helper Methods
     func imageFromB64(data:String)->UIImage?{
         var d=NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         return UIImage(data: d!)
     }
+    
     class func getBase64(data:UIImage)->String{
         let imgData = UIImagePNGRepresentation(data)
         let string = imgData.base64EncodedStringWithOptions(.allZeros)

@@ -10,16 +10,22 @@ import Foundation
 
 class DataManager: UpdateDelegate{
     static let dataManager=DataManager()
-    let networkManager=NetworkManager()
     var currentPosts:[EntryModel]=[]
     var lastRefresh=NSDate(timeIntervalSince1970: 0)
    
     class func getInstance()->DataManager{
         return DataManager.dataManager
     }
+    
+    //Custom method if current location isn't the desired location
     func updatePosts(location:[String:Double]!, distance:Double){
-        networkManager.getNearbyPhotos(location, distance: distance, delegate: self)
+        NetworkManager.getInstance().getNearbyPhotos(location, distance: distance, delegate: self)
     }
+    
+    func updatePosts(){
+        self.updatePosts(["lon":LocationManager.getInstance().getLastLocation().lon ,"lat":LocationManager.getInstance().getLastLocation().lat], distance: 1000)
+    }
+    
     func didUpdate(data:[EntryModel]){
         self.lastRefresh = NSDate()
         currentPosts=data
