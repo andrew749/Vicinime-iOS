@@ -16,6 +16,8 @@ class MapViewController:UIViewController, UIImagePickerControllerDelegate, UINav
     var image:UIImage?
     let imagePicker = UIImagePickerController()
     
+    var lastLocation:CLLocation?
+    
     override func viewDidLoad() {
         let initialLocation = CLLocation(latitude: 43.282778, longitude: -79.829444)
         centerMapOnLocation(initialLocation)
@@ -32,10 +34,18 @@ class MapViewController:UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     func locationUpdate(){
-        let lastLocation = LocationManager.getInstance().getLastLocation()
-        centerMapOnLocation(CLLocation(latitude: lastLocation.lat, longitude: lastLocation.lon))
+        if let l = lastLocation{
+            let currentLocation=locationFromCoordinates(LocationManager.getInstance().getLastLocation().lon,lat:LocationManager.getInstance().getLastLocation().lat)
+            if (currentLocation.distanceFromLocation(l)<20){
+                centerMapOnLocation(currentLocation)
+                lastLocation = currentLocation
+            }
+        }
     }
     
+    func locationFromCoordinates(lon:Double,lat:Double)->CLLocation{
+        return CLLocation(latitude: lat, longitude: lon)
+    }
     func didUpdate(){
         self.loadLocations(DataManager.getInstance().currentPosts)
     }

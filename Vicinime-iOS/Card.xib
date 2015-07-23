@@ -46,7 +46,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="333" height="46"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-FS-e2l">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-FS-e2l">
                         <rect key="frame" x="0.0" y="0.0" width="333" height="46"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="46" id="4F3-Gk-hdh"/>
