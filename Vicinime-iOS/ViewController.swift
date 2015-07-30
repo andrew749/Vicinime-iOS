@@ -92,7 +92,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         // Code here to work with media
         var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        var compressedData:NSData = UIImageJPEGRepresentation(chosenImage,0)
+        var compressedData:NSData = UIImageJPEGRepresentation(chosenImage, 0)
         var compressedImage:UIImage = UIImage(data: compressedData)!
         self.image=compressedImage
         imagePicker.dismissViewControllerAnimated(true, completion: {
